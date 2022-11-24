@@ -82,7 +82,7 @@ const HomePage = () => {
           <Box sx={{ textAlign: "center", color: "primary.main" }}>
             <ClipLoader color="inherit" size={150} loading={true} />
           </Box>
-        ) : error ? (
+        ) : status === "failed" && error ? (
           <Alert severity="error">{error}</Alert>
         ) : (
           <Stack
