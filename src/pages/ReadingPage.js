@@ -22,7 +22,7 @@ import {
 const BACKEND_API = process.env.REACT_APP_BACKEND_API;
 
 const ReadingPage = () => {
-  const books = useSelector((state) => state.book.readingList);
+  const readingList = useSelector((state) => state.book.readingList);
   const status = useSelector((state) => state.book?.status);
   const [removedBookId, setRemovedBookId] = useState("");
   const navigate = useNavigate();
@@ -64,50 +64,48 @@ const ReadingPage = () => {
           justifyContent="space-around"
           flexWrap={"wrap"}
         >
-          {books?.length >= 0
-            ? books.map((book) => (
-                <Card
-                  key={book.id}
-                  sx={{
-                    width: "12rem",
-                    height: "27rem",
-                    marginBottom: "2rem",
-                  }}
-                >
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      image={`${BACKEND_API}/${book.imageLink}`}
-                      alt={`${book.title}`}
-                      onClick={() => handleClickBook(book.id)}
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="div">
-                        {`${book.title}`}
-                      </Typography>
-                      <Typography gutterBottom variant="body1" component="div">
-                        {`${book.author}`}
-                      </Typography>
-                      <Button
-                        sx={{
-                          position: "absolute",
-                          top: "5px",
-                          right: "5px",
-                          backgroundColor: "secondary.light",
-                          color: "secondary.contrastText",
-                          padding: "0",
-                          minWidth: "1.5rem",
-                        }}
-                        size="small"
-                        onClick={() => removeBook(book.id)}
-                      >
-                        &times;
-                      </Button>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              ))
-            : "No Reading List Book Data Found."}
+          {readingList?.map((book) => (
+            <Card
+              key={book.id}
+              sx={{
+                width: "12rem",
+                height: "27rem",
+                marginBottom: "2rem",
+              }}
+            >
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  image={`${BACKEND_API}/${book.imageLink}`}
+                  alt={`${book.title}`}
+                  onClick={() => handleClickBook(book.id)}
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {`${book.title}`}
+                  </Typography>
+                  <Typography gutterBottom variant="body1" component="div">
+                    {`${book.author}`}
+                  </Typography>
+                  <Button
+                    sx={{
+                      position: "absolute",
+                      top: "5px",
+                      right: "5px",
+                      backgroundColor: "secondary.light",
+                      color: "secondary.contrastText",
+                      padding: "0",
+                      minWidth: "1.5rem",
+                    }}
+                    size="small"
+                    onClick={() => removeBook(book.id)}
+                  >
+                    &times;
+                  </Button>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          ))}
         </Stack>
       )}
     </Container>
