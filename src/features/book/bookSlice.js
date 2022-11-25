@@ -27,8 +27,6 @@ export const fetchReadingList = createAsyncThunk(
   "book/fetchReadingList",
   async () => {
     const response = await fetchFavoriteData();
-    console.log(`response is: ${JSON.stringify(response)}`);
-    console.log(`response data is: ${JSON.stringify(response.data)}`);
     return response.data;
   }
 );
@@ -81,8 +79,9 @@ export const bookSlice = createSlice({
 
     builder
       .addCase(addBookToReadingList.pending, (state) => {})
-      .addCase(addBookToReadingList.fulfilled, (state) => {
+      .addCase(addBookToReadingList.fulfilled, (state, action) => {
         state.status = null;
+        state.readingList = [...state.readingList, action.payload];
         toast.success("The book has been added to the reading list!");
       })
       .addCase(addBookToReadingList.rejected, (state) => {
@@ -96,6 +95,10 @@ export const bookSlice = createSlice({
       })
       .addCase(removeBookFromReadingList.fulfilled, (state, action) => {
         state.status = null;
+        const removeBookId = action.meta.arg;
+        state.readingList = state.readingList.filter(
+          (book) => book.id !== removeBookId
+        );
         toast.success("The book has been removed.");
       })
       .addCase(removeBookFromReadingList.rejected, (state, action) => {

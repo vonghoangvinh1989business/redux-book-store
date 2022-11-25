@@ -1,5 +1,17 @@
 {
-  "favorites": [],
+  "favorites": [
+    {
+      "author": "Honoré de Balzac",
+      "country": "France",
+      "imageLink": "images/le-pere-goriot.jpg",
+      "language": "French",
+      "link": "https://en.wikipedia.org/wiki/Le_P%C3%A8re_Goriot\n",
+      "pages": 443,
+      "title": "Le Père Goriot",
+      "year": 1835,
+      "id": "484CAB01CF8"
+    }
+  ],
   "books": [
     {
       "author": "Chinua Achebe",
