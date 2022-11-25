@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchBookData } from "./bookApi";
+import { fetchBookData, fetchFavoriteData } from "./bookApi";
 import api from "../../apiService";
 import { toast } from "react-toastify";
 
@@ -26,7 +26,7 @@ export const getBookDetail = createAsyncThunk(
 export const fetchReadingList = createAsyncThunk(
   "book/fetchReadingList",
   async () => {
-    const response = await api.get(`/favorites`);
+    const response = await fetchFavoriteData();
     console.log(`response is: ${JSON.stringify(response)}`);
     console.log(`response data is: ${JSON.stringify(response.data)}`);
     return response.data;

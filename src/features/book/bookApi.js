@@ -10,3 +10,12 @@ export const fetchBookData = async ({ pageNum, limit, query }) => {
     throw new Error("No Book Data Found.");
   }
 };
+
+export const fetchFavoriteData = async () => {
+  try {
+    const response = await api.get(`/favorites`);
+    return response;
+  } catch (error) {
+    throw new Error("No Reading List Book Data Found.");
+  }
+};
