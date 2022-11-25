@@ -22,9 +22,11 @@ import {
 const BACKEND_API = process.env.REACT_APP_BACKEND_API;
 
 const ReadingPage = () => {
+  const [removedBookId, setRemovedBookId] = useState("");
   const readingList = useSelector((state) => state.book.readingList);
   const status = useSelector((state) => state.book?.status);
-  const [removedBookId, setRemovedBookId] = useState("");
+
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleClickBook = (bookId) => {
@@ -34,8 +36,6 @@ const ReadingPage = () => {
   const removeBook = (bookId) => {
     setRemovedBookId(bookId);
   };
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (removedBookId) return;
