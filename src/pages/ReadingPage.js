@@ -45,6 +45,7 @@ const ReadingPage = () => {
   useEffect(() => {
     if (!removedBookId) return;
     dispatch(removeBookFromReadingList(removedBookId));
+    setRemovedBookId("");
   }, [dispatch, removedBookId]);
 
   return (
