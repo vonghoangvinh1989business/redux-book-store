@@ -27,6 +27,8 @@ export const fetchReadingList = createAsyncThunk(
   "book/fetchReadingList",
   async () => {
     const response = await api.get(`/favorites`);
+    console.log(`response is: ${JSON.stringify(response)}`);
+    console.log(`response data is: ${JSON.stringify(response.data)}`);
     return response.data;
   }
 );
